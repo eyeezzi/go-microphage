@@ -1,0 +1,5 @@
+KAFKA_BROKERS_URLS = kafka-prod-project-3a94.aivencloud.com:19077
+KAFKA_TOPIC = microphage.toxin.created
+KAFKA_CLIENT_USERNAME = microphage-producer
+KAFKA_CLIENT_PASSWORD = tcuh2gtclnany11r
+KAFKA_CACERT_FILE = ./aiven.ca.pem

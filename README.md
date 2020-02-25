@@ -4,7 +4,7 @@ A war has been raging underground for a long time now. The Microbes and Immune h
 
 ## Usage
 
-1. supply the files aiven.env and concluent.env. See sample.env.
+1. supply the files aiven.env and concluent.env. See sample-env.
 2. `go run *.go`
 
 ## Notes
