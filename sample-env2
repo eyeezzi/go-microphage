@@ -1,0 +1,6 @@
+
+KAFKA_BROKERS_URLS=<hostname:port>
+KAFKA_TOPIC=<product.object.action>
+KAFKA_CACERT_FILE=<pem payload>
+KAFKA_CLIENT_PUBLIC_KEY=<pem payload>
+KAFKA_CLIENT_PRIVATE_KEY=<pem payload>

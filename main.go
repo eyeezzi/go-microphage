@@ -14,13 +14,6 @@ import (
 	kafka "github.com/segmentio/kafka-go"
 )
 
-// func newKafkaWriter() *kafka.Writer {
-// 	return kafka.NewWriter(kafka.WriterConfig{
-// 		Brokers: []string{"kafka-prod-project-3a94.aivencloud.com:19077"},
-// 		Topic:   "microphage.toxin.created",
-// 	})
-// }
-
 func main() {
 	// Ensure all required Envars are set
 	brokersURL, found := os.LookupEnv("KAFKA_BROKERS_URLS")
@@ -29,7 +22,6 @@ func main() {
 		return
 	}
 
-	// cacertfile, found := os.LookupEnv("KAFKA_CACERT_FILE")
 	caCert, found := os.LookupEnv("KAFKA_CACERT_FILE")
 	if !found {
 		log.Fatalf("environment variable KAFKA_CACERT_FILE required but not found")
@@ -54,49 +46,11 @@ func main() {
 		return
 	}
 
-	// clientUsername, found := os.LookupEnv("KAFKA_CLIENT_USERNAME")
-	// if !found {
-	// 	_ = errors.New("environment variable KAFKA_CLIENT_USERNAME required but not found")
-	// 	return
-	// }
-
-	// clientPassword, found := os.LookupEnv("KAFKA_CLIENT_PASSWORD")
-	// if !found {
-	// 	_ = errors.New("environment variable KAFKA_CLIENT_PASSWORD required but not found")
-	// 	return
-	// }
-
-	// Setup connection to Kafka
-
-	// saslPlain := plain.Mechanism{
-	// 	Username: clientUsername,
-	// 	Password: clientPassword,
-	// }
-
 	keypair, err := tls.X509KeyPair([]byte(clientPublicKey), []byte(clientPrivateKey))
 	if err != nil {
 		log.Fatalf("failed to load Access Key and/or Access Certificate: %s", err)
 		return
 	}
-
-	// Confluent brokers use a public CA cert, while Aiven's use a private CA cert.
-	// Hence if we are verifying the broker certs
-	// 		For Confluent: the client should use our host trusted CAs.
-	// 		For Aiven: the client should specifically trust the Aiven CA.
-	// var caCert []byte
-	// var caCertPool *x509.CertPool
-
-	// if cacertfile != "" {
-	// 	cert, err := ioutil.ReadFile(cacertfile)
-
-	// 	if err != nil {
-	// 		log.Fatal(err)
-	// 	}
-
-	// 	caCert = cert
-	// 	caCertPool = x509.NewCertPool()
-	// 	caCertPool.AppendCertsFromPEM(caCert)
-	// }
 
 	caCertPool := x509.NewCertPool()
 	caCertPool.AppendCertsFromPEM([]byte(caCert))
