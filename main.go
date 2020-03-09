@@ -58,7 +58,6 @@ func main() {
 	dialer := &kafka.Dialer{
 		Timeout:   5 * time.Second,
 		DualStack: true,
-		// SASLMechanism: saslPlain,
 		TLS: &tls.Config{
 			InsecureSkipVerify: false,
 			RootCAs:            caCertPool,
